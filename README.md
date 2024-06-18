@@ -24,14 +24,13 @@ doodlekit.NewLoop("glitters-xmastree",
 Check out the complete [doodles gallery here!](GALLERY_1.md)
 
 
-
 ## Share Your Doodles
 
 Let everyone enjoy the amazing doodles you create with DoodleKit! Share your animations on X (formerly Twitter) using the hashtag #doodlekit. 
 
 ```
 Check out my latest doodle created with #doodlekit! 🎨✨
-#golang #demoscene #creativecoding
+#golang #doodles #creativecoding
 ```
 
 By sharing your creations, you can inspire others!
