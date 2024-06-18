@@ -1,0 +1,6 @@
+github.com/lucasepe/doodlekit v0.1.2 h1:laHFFArLlZuKn3yYnPASk82hLGljSUx79tXVch18mS4=
+github.com/lucasepe/doodlekit v0.1.2/go.mod h1:P/yeSab+rFM+W9FNbp9kYQ/B0VGv74qVU25gq3yIVxQ=
+golang.org/x/image v0.17.0 h1:nTRVVdajgB8zCMZVsViyzhnMKPwYeroEERRC64JuLco=
+golang.org/x/image v0.17.0/go.mod h1:4yyo5vMFQjVjUcVk4jEQcU9MGy/rulF5WvUILseCM2E=
+golang.org/x/text v0.16.0 h1:a94ExnEXNtEwYLGJSIUxnWoxoRz/ZcCsV63ROupILh4=
+golang.org/x/text v0.16.0/go.mod h1:GhwF1Be+LQoKShO3cGOHzqOgRrGaYc9AvblQOmPVHnI=
