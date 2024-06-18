@@ -29,8 +29,8 @@ Check out the complete [doodles gallery here!](GALLERY_1.md)
 Let everyone enjoy the amazing doodles you create with DoodleKit! Share your animations on X (formerly Twitter) using the hashtag #doodlekit. 
 
 ```
-Check out my latest doodle created with #doodlekit! 🎨✨
-#golang #doodles #creativecoding
+Check out my latest doodle created with https://github.com/lucasepe/doodlekit ! 🎨✨
+#doodlekit #golang #doodles #creativecoding
 ```
 
 By sharing your creations, you can inspire others!
