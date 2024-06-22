@@ -27,11 +27,11 @@ func (s *scene) Init(ctx context.Context) {
 	s.dots = make([]dot, s.total)
 	for i := 0; i < s.total; i++ {
 		s.dots[i] = dot{
-			x:  rng.RndI(s.w),
-			y:  rng.RndI(s.h),
-			dx: rng.RndI(2) + 1,
-			dy: rng.RndI(2) + 1,
-			r:  rng.RndI(2) + 2,
+			x:  rng.RndI(0, s.w),
+			y:  rng.RndI(0, s.h),
+			dx: rng.RndI(1, 3),
+			dy: rng.RndI(1, 3),
+			r:  rng.RndI(2, 4),
 		}
 	}
 }

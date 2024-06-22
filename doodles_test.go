@@ -8,10 +8,37 @@ import (
 	"github.com/lucasepe/doodles/connections"
 	"github.com/lucasepe/doodles/glitters"
 	"github.com/lucasepe/doodles/qix"
+	"github.com/lucasepe/doodles/sinebobs"
+	"github.com/lucasepe/doodles/starfield"
 	"github.com/lucasepe/doodles/stars"
 	"github.com/lucasepe/doodles/tunnel"
 	"github.com/lucasepe/doodles/xmastree"
 )
+
+func TestStarfield3DScene(t *testing.T) {
+	scenes := []doodlekit.Scene{
+		clear.Scene(0),
+		starfield.Scene(),
+	}
+
+	doodlekit.NewLoop("starfield",
+		doodlekit.OutDir("_doodles"),
+		doodlekit.StopAfter(15),
+	).Run(scenes)
+}
+
+func TestSinebobsScene(t *testing.T) {
+	scenes := []doodlekit.Scene{
+		clear.Scene(0),
+		stars.Scene(),
+		sinebobs.Scene(),
+	}
+
+	doodlekit.NewLoop("sinebobs",
+		doodlekit.OutDir("_doodles"),
+		doodlekit.StopAfter(15),
+	).Run(scenes)
+}
 
 func TestXmasTreeWithGlittersScene(t *testing.T) {
 	scenes := []doodlekit.Scene{

@@ -27,9 +27,9 @@ func (s *scene) Init(ctx context.Context) {
 
 	s.stars = make([]star, s.total)
 	for i := 0; i < s.total; i++ {
-		s.stars[i].x = rng.Rnd(160)
-		s.stars[i].y = rng.Rnd(160)
-		s.stars[i].vx = rng.Rnd(3)
+		s.stars[i].x = rng.Rnd(0, 160)
+		s.stars[i].y = rng.Rnd(0, 160)
+		s.stars[i].vx = rng.Rnd(0.5, 3)
 	}
 }
 
@@ -41,8 +41,8 @@ func (s *scene) Update(ctx context.Context, dt float64) {
 
 		if s.stars[i].x < 0 {
 			s.stars[i].x = 160
-			s.stars[i].y = rng.Rnd(160)
-			s.stars[i].vx = rng.Rnd(3)
+			s.stars[i].y = rng.Rnd(0, 160)
+			s.stars[i].vx = rng.Rnd(0.5, 3)
 		}
 	}
 }

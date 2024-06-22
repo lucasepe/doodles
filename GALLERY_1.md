@@ -7,3 +7,7 @@
 | [`stars`](stars/scene.go)     |   | [`connections`](connections/scene.go)    |   | [`xmastree`](xmastree/scene.go)    | 
 |:------------------------------|:-:|:-----------------------------------------|:-:|:-------------------------|
 | ![stars](_doodles/stars.gif)  |   | ![connections](_doodles/connections.gif) |   | ![xmastree](_doodles/xmastree.gif) |
+
+| [`sinebobs`](sinebobs/scene.go)    |   | [`3d starfield`](starfield/scene.go) |
+|:-----------------------------------|:-:|:-------------------------------------|
+| ![sinebobs](_doodles/sinebobs.gif) |   | ![starfield](_doodles/starfield.gif) |

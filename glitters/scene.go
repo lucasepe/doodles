@@ -33,7 +33,7 @@ func (s *scene) Draw(ctx context.Context) {
 	gc := doodlekit.Canvas(ctx)
 
 	for i := 0; i < 400; i++ {
-		x, y := rng.RndI(160), rng.RndI(160)
+		x, y := rng.RndI(0, 160), rng.RndI(0, 160)
 
 		c := gc.At(x, y)
 		if c == 0 {
@@ -44,13 +44,13 @@ func (s *scene) Draw(ctx context.Context) {
 				k = 0.8
 			}
 
-			if rng.Rnd(1) < k {
+			if rng.Rnd(0, 1) < k {
 				c = 3
 			} else {
 				c = 11
 			}
 
-		} else if rng.Rnd(2) < 1 {
+		} else if rng.Rnd(0, 2) < 1 {
 			c = s.colors[c]
 		}
 

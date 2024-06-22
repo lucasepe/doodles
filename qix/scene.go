@@ -30,10 +30,10 @@ func (s *scene) Init(ctx context.Context) {
 	rng := doodlekit.Rng(ctx)
 
 	s.deck = []line{}
-	s.color = 1 + rng.RndI(14)
+	s.color = rng.RndI(1, 14)
 
-	x1, y1 := s.xMin+rng.RndI(s.xMax), s.yMin+rng.RndI(s.yMax)
-	x2, y2 := s.xMin+rng.RndI(100), s.yMin+rng.RndI(100)
+	x1, y1 := rng.RndI(s.xMin, s.xMax), rng.RndI(s.yMin, s.yMax)
+	x2, y2 := rng.RndI(s.xMin, 100), rng.RndI(s.yMin, 100)
 	for i := 0; i < 12; i++ {
 		s.deck = append(s.deck, line{
 			x1: x1, y1: y1,
@@ -42,10 +42,10 @@ func (s *scene) Init(ctx context.Context) {
 		})
 	}
 
-	s.dx1 = rng.RndI(8)
-	s.dx2 = rng.RndI(8)
-	s.dy1 = rng.RndI(8)
-	s.dy2 = rng.RndI(8)
+	s.dx1 = rng.RndI(0, 8)
+	s.dx2 = rng.RndI(0, 8)
+	s.dy1 = rng.RndI(0, 8)
+	s.dy2 = rng.RndI(0, 8)
 	s.x1dir = chooseDir(ctx)
 	s.x2dir = chooseDir(ctx)
 	s.y1dir = chooseDir(ctx)
@@ -68,8 +68,8 @@ func (s *scene) Update(ctx context.Context, dt float64) {
 			x1 = s.xMax
 		}
 		s.x1dir = -s.x1dir
-		s.dx1 = rng.RndI(8)
-		s.color = 1 + rng.RndI(14)
+		s.dx1 = rng.RndI(0, 8)
+		s.color = rng.RndI(1, 14)
 	}
 
 	if x2 < s.xMin || x2 > s.xMax {
@@ -80,8 +80,8 @@ func (s *scene) Update(ctx context.Context, dt float64) {
 			x2 = s.xMax
 		}
 		s.x2dir = -s.x2dir
-		s.dx2 = rng.RndI(8)
-		s.color = 1 + rng.RndI(14)
+		s.dx2 = rng.RndI(0, 8)
+		s.color = rng.RndI(1, 14)
 	}
 
 	if y1 < s.yMin || y1 > s.yMax {
@@ -92,8 +92,8 @@ func (s *scene) Update(ctx context.Context, dt float64) {
 			y1 = s.yMax
 		}
 		s.y1dir = -s.y1dir
-		s.dy1 = rng.RndI(8)
-		s.color = 1 + rng.RndI(14)
+		s.dy1 = rng.RndI(0, 8)
+		s.color = rng.RndI(1, 14)
 	}
 
 	if y2 < s.yMin || y2 > s.yMax {
@@ -104,8 +104,8 @@ func (s *scene) Update(ctx context.Context, dt float64) {
 			y2 = s.yMax
 		}
 		s.y2dir = -s.y2dir
-		s.dy2 = rng.RndI(8)
-		s.color = 1 + rng.RndI(14)
+		s.dy2 = rng.RndI(0, 8)
+		s.color = rng.RndI(1, 14)
 	}
 
 	s.deck = append(s.deck[:0], s.deck[1:]...)
@@ -139,7 +139,7 @@ type line struct {
 
 func chooseDir(ctx context.Context) int {
 	rng := doodlekit.Rng(ctx)
-	if rng.Rnd(1) <= 0.5 {
+	if rng.Rnd(0, 1) <= 0.5 {
 		return 1
 	}
 	return -1
