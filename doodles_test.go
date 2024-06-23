@@ -15,10 +15,22 @@ import (
 	"github.com/lucasepe/doodles/xmastree"
 )
 
-func TestStarfield3DScene(t *testing.T) {
+func TestStarfield3dRotoScene(t *testing.T) {
 	scenes := []doodlekit.Scene{
 		clear.Scene(0),
-		starfield.Scene(),
+		starfield.Scene(true),
+	}
+
+	doodlekit.NewLoop("starfield-roto",
+		doodlekit.OutDir("_doodles"),
+		doodlekit.StopAfter(15),
+	).Run(scenes)
+}
+
+func TestStarfield3dScene(t *testing.T) {
+	scenes := []doodlekit.Scene{
+		clear.Scene(0),
+		starfield.Scene(false),
 	}
 
 	doodlekit.NewLoop("starfield",

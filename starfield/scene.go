@@ -2,23 +2,27 @@ package starfield
 
 import (
 	"context"
+	"math"
 
 	"github.com/lucasepe/doodlekit"
 )
 
-func Scene() doodlekit.Scene {
+func Scene(roto bool) doodlekit.Scene {
 	return &scene{
-		speed: 2.5,
-		total: 300,
+		roto:  roto,
+		speed: 1.5,
+		total: 250,
 	}
 }
 
 type scene struct {
-	w, h  int
-	speed float64
-	stars []star
-	total int
-	depth float64
+	w, h   int
+	speed  float64
+	stars  []star
+	total  int
+	depth  float64
+	roto   bool
+	angleZ float64
 }
 
 func (s *scene) Init(ctx context.Context) {
@@ -36,8 +40,10 @@ func (s *scene) Init(ctx context.Context) {
 	}
 }
 
-func (s *scene) Update(ctx context.Context, _ float64) {
+func (s *scene) Update(ctx context.Context, dt float64) {
 	rng := doodlekit.Rng(ctx)
+
+	cos, sin := math.Cos, math.Sin
 
 	for i := 0; i < s.total; i++ {
 		// Move star towards the viewer
@@ -47,6 +53,18 @@ func (s *scene) Update(ctx context.Context, _ float64) {
 			s.stars[i].y = rng.Rnd(-0.5*float64(s.h), 0.5*float64(s.h))
 			s.stars[i].z = s.depth
 		}
+
+		if s.roto {
+			// Rotate around Z axis
+			x_rot := s.stars[i].x*cos(s.angleZ) - s.stars[i].y*sin(s.angleZ)
+			y_rot := s.stars[i].x*sin(s.angleZ) + s.stars[i].y*cos(s.angleZ)
+			s.stars[i].x = x_rot
+			s.stars[i].y = y_rot
+		}
+	}
+
+	if s.roto {
+		s.angleZ += 0.0001
 	}
 }
 
