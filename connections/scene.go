@@ -7,11 +7,11 @@ import (
 	"github.com/lucasepe/doodlekit"
 )
 
-func Scene() doodlekit.Scene {
+func Scene(total int) doodlekit.Scene {
 	return &scene{
 		w:     160,
 		h:     160,
-		total: 30,
+		total: total,
 	}
 }
 
@@ -23,6 +23,10 @@ type scene struct {
 
 func (s *scene) Init(ctx context.Context) {
 	rng := doodlekit.Rng(ctx)
+
+	if s.total <= 0 || s.total > 100 {
+		s.total = 30
+	}
 
 	s.dots = make([]dot, s.total)
 	for i := 0; i < s.total; i++ {

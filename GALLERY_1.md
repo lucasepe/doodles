@@ -11,3 +11,7 @@
 | [`sinebobs`](sinebobs/scene.go)    |   | [`3d starfield`](starfield/scene.go) |   | [`3d starfield roto`](starfield/scene.go) |
 |:-----------------------------------|:-:|:-------------------------------------|:-:|:-------------------------------------|
 | ![sinebobs](_doodles/sinebobs.gif) |   | ![starfield](_doodles/starfield.gif) |   | ![starfield roto](_doodles/starfield-roto.gif) |
+
+| [`clock`](clock/scene.go)     | 
+|:-----------------------------------|
+| ![clock](_doodles/clock.gif) |

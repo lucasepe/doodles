@@ -5,6 +5,7 @@ import (
 
 	"github.com/lucasepe/doodlekit"
 	"github.com/lucasepe/doodles/clear"
+	"github.com/lucasepe/doodles/clock"
 	"github.com/lucasepe/doodles/connections"
 	"github.com/lucasepe/doodles/glitters"
 	"github.com/lucasepe/doodles/qix"
@@ -14,6 +15,20 @@ import (
 	"github.com/lucasepe/doodles/tunnel"
 	"github.com/lucasepe/doodles/xmastree"
 )
+
+func TestClockScene(t *testing.T) {
+	scenes := []doodlekit.Scene{
+		clear.Scene(0),
+		starfield.Scene(true),
+		clock.Scene(),
+	}
+
+	doodlekit.NewLoop("clock",
+		//doodlekit.X2(),
+		doodlekit.OutDir("_doodles"),
+		doodlekit.StopAfter(20),
+	).Run(scenes)
+}
 
 func TestStarfield3dRotoScene(t *testing.T) {
 	scenes := []doodlekit.Scene{
@@ -92,7 +107,7 @@ func TestXmasTreeScene(t *testing.T) {
 func TestConnectionsScene(t *testing.T) {
 	scenes := []doodlekit.Scene{
 		clear.Scene(0),
-		connections.Scene(),
+		connections.Scene(30),
 	}
 
 	doodlekit.NewLoop("connections",
