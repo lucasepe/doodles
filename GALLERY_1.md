@@ -8,6 +8,6 @@
 |:------------------------------|:-:|:-----------------------------------------|:-:|:-------------------------|
 | ![stars](_doodles/stars.gif)  |   | ![connections](_doodles/connections.gif) |   | ![xmastree](_doodles/xmastree.gif) |
 
-| [`sinebobs`](sinebobs/scene.go)    |   | [`3d starfield`](starfield/scene.go) |
-|:-----------------------------------|:-:|:-------------------------------------|
-| ![sinebobs](_doodles/sinebobs.gif) |   | ![starfield](_doodles/starfield.gif) |
+| [`sinebobs`](sinebobs/scene.go)    |   | [`3d starfield`](starfield/scene.go) |   | [`3d starfield roto`](starfield/scene.go) |
+|:-----------------------------------|:-:|:-------------------------------------|:-:|:-------------------------------------|
+| ![sinebobs](_doodles/sinebobs.gif) |   | ![starfield](_doodles/starfield.gif) |   | ![starfield roto](_doodles/starfield-roto.gif) |
