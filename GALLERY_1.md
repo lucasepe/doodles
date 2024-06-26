@@ -11,4 +11,5 @@
 [![`sinebobs`](_doodles/sinebobs.gif)](sinebobs/scene.go) &nbsp;&nbsp; 
 [![`3d starfield roto`](_doodles/starfield-roto.gif)](starfield/scene.go) &nbsp;&nbsp; 
 [![`clock`](_doodles/clock.gif)](clock/scene.go) &nbsp;&nbsp; 
+[![`dotscube`](_doodles/dotscube.gif)](dotscube/scene.go) &nbsp;&nbsp; 
 

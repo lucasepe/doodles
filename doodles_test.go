@@ -7,6 +7,7 @@ import (
 	"github.com/lucasepe/doodles/clear"
 	"github.com/lucasepe/doodles/clock"
 	"github.com/lucasepe/doodles/connections"
+	"github.com/lucasepe/doodles/dotscube"
 	"github.com/lucasepe/doodles/glitters"
 	"github.com/lucasepe/doodles/lines"
 	"github.com/lucasepe/doodles/sinebobs"
@@ -19,6 +20,19 @@ import (
 const (
 	scaleFactor = 2
 )
+
+func TestTwisterScene(t *testing.T) {
+	scenes := []doodlekit.Scene{
+		clear.Scene(1),
+		dotscube.Scene(),
+	}
+
+	doodlekit.NewLoop("dotscube",
+		doodlekit.Resize(scaleFactor),
+		doodlekit.OutDir("_doodles"),
+		doodlekit.StopAfter(15),
+	).Run(scenes)
+}
 
 func TestClockWithStarfieldScene(t *testing.T) {
 	scenes := []doodlekit.Scene{
