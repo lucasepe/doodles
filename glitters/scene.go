@@ -7,20 +7,32 @@ import (
 	"github.com/lucasepe/doodlekit"
 )
 
-func Scene() doodlekit.Scene {
+func Scene(total int) doodlekit.Scene {
 	return &scene{
-		total: 30,
+		total: total,
 	}
 }
 
 type scene struct {
+	w, h   int
 	total  int
 	colors []int
 	time   float64
 }
 
 func (s *scene) Init(ctx context.Context) {
-	s.colors = []int{0, 0, 1, 1, 2, 1, 5, 6, 2, 4, 9, 3, 1, 1, 8, 10}
+	gc := doodlekit.Canvas(ctx)
+
+	s.w, s.h = gc.Width(), gc.Height()
+	if s.total < 0 {
+		s.total = 40
+	}
+
+	if s.total > 2*s.w {
+		s.total = s.w
+	}
+
+	s.colors = []int{1, 1, 2, 2, 4, 2, 6, 7, 4, 5, 10, 4, 2, 2, 9, 11}
 	s.time = 0
 }
 
@@ -32,11 +44,11 @@ func (s *scene) Draw(ctx context.Context) {
 	rng := doodlekit.Rng(ctx)
 	gc := doodlekit.Canvas(ctx)
 
-	for i := 0; i < 400; i++ {
-		x, y := rng.RndI(0, 160), rng.RndI(0, 160)
+	for i := 0; i < s.total; i++ {
+		x, y := rng.RndI(0, s.w), rng.RndI(0, s.h)
 
 		c := gc.At(x, y)
-		if c == 0 {
+		if c <= 1 {
 			c = int(float64(y)/60+math.Abs(math.Mod(float64(x), 32)-16)/60+s.time) % 2
 
 			k := 0.2
@@ -45,9 +57,9 @@ func (s *scene) Draw(ctx context.Context) {
 			}
 
 			if rng.Rnd(0, 1) < k {
-				c = 3
+				c = 4
 			} else {
-				c = 11
+				c = 12
 			}
 
 		} else if rng.Rnd(0, 2) < 1 {

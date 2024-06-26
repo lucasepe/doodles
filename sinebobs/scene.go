@@ -8,37 +8,52 @@ import (
 )
 
 func Scene() doodlekit.Scene {
-	return &scene{
-		speed: 4.5,
-	}
+	return &scene{}
 }
 
 type scene struct {
-	time  float64
-	speed float64
+	w, h               int
+	time               float64
+	cols, rows         int
+	spacingX, spacingY int
+	offsetX, offsetY   int
 }
 
-func (s *scene) Init(ctx context.Context) {}
+func (s *scene) Init(ctx context.Context) {
+	gc := doodlekit.Canvas(ctx)
+
+	s.w, s.h = gc.Width(), gc.Height()
+	// Number of spheres in each direction
+	s.cols, s.rows = 8, 6
+	// Small margin to avoid cutting spheres at the edges
+	colsMargin, rowsMargin := 4, 10
+	// Spacing between spheres
+	s.spacingX = (s.w - 2*colsMargin) / (s.cols - 1)
+	s.spacingY = (s.h - 2*rowsMargin) / (s.rows - 1)
+
+	s.offsetX = (s.w - (s.cols-1)*s.spacingX) / 2
+	s.offsetY = (s.h - (s.rows-1)*s.spacingY) / 2
+}
 
 func (s *scene) Update(ctx context.Context, dt float64) {
-	s.time += s.speed * dt
+	s.time += 4 * dt
 }
 
 func (s *scene) Draw(ctx context.Context) {
 	gc := doodlekit.Canvas(ctx)
 
-	for l := -7.0; l < 8; l++ {
-		x := int(l*11) + 80
+	for l := 0.0; l < float64(s.cols); l++ {
+		x := int(l*float64(s.spacingX)) + s.offsetX
 
-		for n := -5.0; n < 6; n++ {
-			y := int(n*11) + 80
+		for n := 0.0; n < float64(s.rows); n++ {
+			y := int(n*float64(s.spacingY)) + s.offsetY
 			p := math.Sin(s.time + l/2 - n/1.5*math.Sin(s.time+n/8))
 
-			gc.Color(2 + int(s.time))
-			gc.CircFill(x, y, 2*int(p+2))
+			gc.Color(3 + int(s.time))
+			gc.CircFill(x, y, int(p+2))
 
-			gc.Color(8 + int(s.time))
-			gc.CircFill(x, y, 1+int(p))
+			gc.Color(9 + int(s.time))
+			gc.CircFill(x, y, int(p+1))
 		}
 	}
 }

@@ -22,9 +22,9 @@ func (s *scene) Init(ctx context.Context) {
 	gc := doodlekit.Canvas(ctx)
 
 	s.speed = 2
-	s.colors = []int{3, 4, 1}
-	s.w = gc.Width() / 2
-	s.h = gc.Height() / 2
+	s.colors = []int{4, 5, 2}
+	s.w = gc.Width()
+	s.h = gc.Height()
 }
 
 func (s *scene) Update(ctx context.Context, _ float64) {
@@ -32,22 +32,27 @@ func (s *scene) Update(ctx context.Context, _ float64) {
 }
 
 func (s *scene) Draw(ctx context.Context) {
-	gc := doodlekit.Canvas(ctx)
+	halfW, halfH := s.w/2, s.h/2
 
-	for y := -s.h; y <= s.h; y++ {
-		for x := -s.w; x <= s.w; x++ {
+	gc := doodlekit.Canvas(ctx)
+	gc.Translate(float64(halfW), float64(halfH))
+
+	for y := -halfH; y <= halfH; y++ {
+		for x := -halfW; x <= halfW; x++ {
 			a := float64(s.t)/16 + (math.Atan2(float64(y), float64(x))+math.Pi)*2.546
-			d := 999 / math.Sqrt(float64(x*x+y*y)+1)
-			q := s.colors[1+int(a*12/16)%(len(s.colors)-1)]
+			d := 222 / math.Sqrt(float64(x*x+y*y))
+			q := s.colors[int(a*12/16)%len(s.colors)]
 			var c int
-			if d > float64(s.h) {
-				c = 0
+			if d > 1.3*float64(s.h) {
+				c = 1
 			} else {
 				c = q ^ int((d+float64(s.t)/4))%3
 			}
 
 			gc.Color(c)
-			gc.Pix(s.w+x, s.h+y)
+			gc.Pix(x, y)
 		}
 	}
+
+	gc.Identity()
 }

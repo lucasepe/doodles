@@ -23,12 +23,14 @@ type scene struct {
 	depth  float64
 	roto   bool
 	angleZ float64
+	colors []int
 }
 
 func (s *scene) Init(ctx context.Context) {
 	gc := doodlekit.Canvas(ctx)
 	rng := doodlekit.Rng(ctx)
 
+	s.colors = []int{6, 7, 8}
 	s.w, s.h = gc.Width(), gc.Height()
 	s.depth = 0.7 * float64(s.w)
 
@@ -51,7 +53,7 @@ func (s *scene) Update(ctx context.Context, dt float64) {
 		if s.stars[i].z <= 0 {
 			s.stars[i].x = rng.Rnd(-0.5*float64(s.w), 0.5*float64(s.w))
 			s.stars[i].y = rng.Rnd(-0.5*float64(s.h), 0.5*float64(s.h))
-			s.stars[i].z = s.depth
+			s.stars[i].z = rng.Rnd(1, s.depth)
 		}
 
 		if s.roto {
@@ -64,7 +66,7 @@ func (s *scene) Update(ctx context.Context, dt float64) {
 	}
 
 	if s.roto {
-		s.angleZ += 0.0001
+		s.angleZ += 0.0002
 	}
 }
 
@@ -72,13 +74,13 @@ func (s *scene) Draw(ctx context.Context) {
 	gc := doodlekit.Canvas(ctx)
 	gc.Translate(0.5*float64(s.w), 0.5*float64(s.h))
 
-	gc.Color(6) //int(s.stars[i].z))
-
 	for i := 0; i < s.total; i++ {
 		// Convert 3D position to 2D screen position
 		screen_x := (s.stars[i].x / s.stars[i].z) * s.depth
 		screen_y := (s.stars[i].y / s.stars[i].z) * s.depth
 
+		idx := int(s.stars[i].z) % len(s.colors)
+		gc.Color(s.colors[idx])
 		gc.Pix(int(screen_x), int(screen_y))
 	}
 

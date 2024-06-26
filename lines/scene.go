@@ -1,4 +1,4 @@
-package qix
+package lines
 
 import (
 	"context"
@@ -7,12 +7,7 @@ import (
 )
 
 func Scene() doodlekit.Scene {
-	return &scene{
-		xMin: 0,
-		yMin: 0,
-		xMax: 160,
-		yMax: 160,
-	}
+	return &scene{}
 }
 
 type scene struct {
@@ -27,14 +22,17 @@ type scene struct {
 }
 
 func (s *scene) Init(ctx context.Context) {
+	gc := doodlekit.Canvas(ctx)
 	rng := doodlekit.Rng(ctx)
+
+	s.xMax, s.yMax = gc.Width(), gc.Height()
 
 	s.deck = []line{}
 	s.color = rng.RndI(1, 14)
 
 	x1, y1 := rng.RndI(s.xMin, s.xMax), rng.RndI(s.yMin, s.yMax)
-	x2, y2 := rng.RndI(s.xMin, 100), rng.RndI(s.yMin, 100)
-	for i := 0; i < 12; i++ {
+	x2, y2 := rng.RndI(s.xMin, s.xMax-8), rng.RndI(s.yMin, s.yMax-8)
+	for i := 0; i < 10; i++ {
 		s.deck = append(s.deck, line{
 			x1: x1, y1: y1,
 			x2: x2, y2: y2,
@@ -69,7 +67,7 @@ func (s *scene) Update(ctx context.Context, dt float64) {
 		}
 		s.x1dir = -s.x1dir
 		s.dx1 = rng.RndI(0, 8)
-		s.color = rng.RndI(1, 14)
+		s.color = rng.RndI(1, 16)
 	}
 
 	if x2 < s.xMin || x2 > s.xMax {
@@ -81,7 +79,7 @@ func (s *scene) Update(ctx context.Context, dt float64) {
 		}
 		s.x2dir = -s.x2dir
 		s.dx2 = rng.RndI(0, 8)
-		s.color = rng.RndI(1, 14)
+		s.color = rng.RndI(1, 16)
 	}
 
 	if y1 < s.yMin || y1 > s.yMax {
@@ -93,7 +91,7 @@ func (s *scene) Update(ctx context.Context, dt float64) {
 		}
 		s.y1dir = -s.y1dir
 		s.dy1 = rng.RndI(0, 8)
-		s.color = rng.RndI(1, 14)
+		s.color = rng.RndI(1, 16)
 	}
 
 	if y2 < s.yMin || y2 > s.yMax {
@@ -105,7 +103,7 @@ func (s *scene) Update(ctx context.Context, dt float64) {
 		}
 		s.y2dir = -s.y2dir
 		s.dy2 = rng.RndI(0, 8)
-		s.color = rng.RndI(1, 14)
+		s.color = rng.RndI(1, 16)
 	}
 
 	s.deck = append(s.deck[:0], s.deck[1:]...)

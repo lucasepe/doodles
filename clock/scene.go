@@ -59,7 +59,7 @@ func (s *scene) Draw(ctx context.Context) {
 	//gc.Color(7)
 	//gc.CircFill(s.centerX, s.centerY, s.radius-3)
 
-	gc.Color(2)
+	gc.Color(3)
 
 	r := 1.0 + float64(s.radius)*0.8
 	for hour := 1; hour <= 12; hour++ {
@@ -70,17 +70,17 @@ func (s *scene) Draw(ctx context.Context) {
 		lbl := fmt.Sprintf("%d", hour)
 		tw, th := gc.MeasureString(lbl)
 		x -= tw / 2
-		y += th / 2
+		y -= th / 2
 		gc.Print(lbl, x, y)
 	}
 
-	gc.Color(5)
+	gc.Color(6)
 	gc.Line(s.centerX, s.centerY, s.xH, s.yH)
 
-	gc.Color(13)
+	gc.Color(14)
 	gc.Line(s.centerX, s.centerY, s.xM, s.yM)
 
-	gc.Color(7)
+	gc.Color(8)
 	gc.Line(s.centerX, s.centerY, s.xS, s.yS)
 
 }
